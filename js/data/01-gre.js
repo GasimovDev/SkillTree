@@ -3,7 +3,7 @@
   D.trees.push({
     id: 'gre', title: 'GRE General Test', short: 'GRE', group: 'Exams',
     summary: 'Verbal Reasoning, Quantitative Reasoning and Analytical Writing for graduate school applications. Scores are 130 to 170 for Verbal and Quant, and 0 to 6 for Writing.',
-    pace: 'Intensive: about 4 to 6 weeks at 15 to 20 hours a week. Most of the gain comes from official practice questions and an honest error log.',
+    pace: 'Intensive: about 6 weeks at 20 hours a week if you do every step (roughly 135 hours), less if your diagnostic is already near your target. Most of the gain comes from official practice questions and an honest error log.',
     branches: { plan: 'Plan and strategy', quant: 'Quantitative', verbal: 'Verbal', writing: 'Analytical Writing', tests: 'Practice tests' },
     nodes: [
       { id: 'gre-format', title: 'Know the test', branch: 'plan', hours: 3, start: true,
