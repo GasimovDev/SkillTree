@@ -1,0 +1,9 @@
+{
+  "name": "skilltree",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline skill tree and weekly planner. Open index.html in a browser; no install or build needed.",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
