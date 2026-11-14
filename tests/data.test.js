@@ -4,8 +4,8 @@ const { ST, loadData } = require('./helpers');
 const data = loadData();
 const TYPES = ['book', 'site', 'course', 'video', 'tool', 'practice'];
 
-test('all eight roadmaps are present', () => {
-  assert.deepEqual(data.trees.map((t) => t.id).sort(), ['compeng', 'defense', 'electronics', 'german', 'gre', 'ielts', 'pcb', 'research']);
+test('all ten roadmaps are present', () => {
+  assert.deepEqual(data.trees.map((t) => t.id).sort(), ['audiofw', 'compeng', 'defense', 'digitalhw', 'electronics', 'german', 'gre', 'ielts', 'pcb', 'research']);
 });
 test('the roadmap data has no structural errors', () => {
   assert.deepEqual(ST.model.validate(data), []);
@@ -29,5 +29,20 @@ test('every roadmap has a summary, a pace suggestion and at least 12 steps', () 
   for (const t of data.trees) {
     assert.ok(t.summary && t.pace, t.id);
     assert.ok(t.nodes.length >= 12, t.id + ' has ' + t.nodes.length);
+  }
+});
+test('software-first roadmaps never put a hardware purchase in front of a software step', () => {
+  for (const id of ['audiofw', 'digitalhw']) {
+    const t = data.trees.find((x) => x.id === id);
+    assert.ok(t, id + ' exists');
+    assert.ok(t.branches.buy, id + ' has a hardware branch');
+    const byId = Object.fromEntries(t.nodes.map((n) => [n.id, n]));
+    const buy = t.nodes.filter((n) => n.branch === 'buy');
+    assert.ok(buy.length >= 2, id + ' marks its hardware steps');
+    assert.ok(t.nodes.length - buy.length >= 12, id + ' has at least 12 steps that need no hardware');
+    for (const n of t.nodes) {
+      if (n.start) assert.notEqual(n.branch, 'buy', n.id);
+      if (n.branch !== 'buy') for (const r of n.requires || []) assert.notEqual(byId[r].branch, 'buy', n.id + ' requires hardware step ' + r);
+    }
   }
 });

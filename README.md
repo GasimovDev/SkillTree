@@ -17,7 +17,9 @@ Open `index.html` in a browser (double-click it). That is all. There is nothing 
 | --- | --- |
 | Exams | GRE General Test, IELTS Academic, German for university (TestDaF or DSH) |
 | Research | Academic research |
-| Engineering | Electronics, PCB design, Computer engineering (hardware and software), Defense industry engineering |
+| Engineering | Electronics, PCB design, Computer engineering (hardware and software), Defense industry engineering, Embedded audio firmware, Digital hardware (FPGA and ASIC) |
+
+The last two are ordered software-first: every step that can be done with simulators and free tools comes first, and steps that need a purchased board are on a separate "Needs hardware" branch at the end.
 
 ## Your data
 
